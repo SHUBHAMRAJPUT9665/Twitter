@@ -1,1 +1,1 @@
-export const DB_NAME = BAG_STORE
+export const DB_NAME = ' BAG_STORE'
