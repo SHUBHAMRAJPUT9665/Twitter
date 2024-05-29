@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 import { app } from "./app.js";
-import { HashtagRepository,TweetRepository } from "./repository/index.js";
 import { TweetService } from "./services/tweet-service.js";
 dotenv.config({ path: "./.env" });
 
@@ -12,9 +11,9 @@ connectDB()
 
       const service = new TweetService()
 
-      const tweet = service.create({content:"coding is love #js #dsa #fun it going to be fun #fun"})
+      const tweet = await service.create({content:   "kaise #first #tweet #backendDevelopement"})
 
-      console.log
+      console.log(tweet)
     });
     app.on("error", (error) => {
       console.log("Error", error);

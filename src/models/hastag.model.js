@@ -15,6 +15,6 @@ const hashTagSchema = new Schema(
   },
   { timestamps: true }
 );
-
-export const Hashtag = mongoose.model("Hashtag", hashTagSchema);
+const Hashtag = mongoose.model("Hashtag", hashTagSchema);
+export default Hashtag
  
