@@ -9,12 +9,6 @@ const tweetSchema = new Schema(
       lowercase:true,
       trim:true,
     },
-    hashtags: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Hashtag",
-      },
-    ],
   },
   {
     timestamps: true,

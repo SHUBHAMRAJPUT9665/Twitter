@@ -1,55 +1,49 @@
-import HashtagRepository  from "../repository/hastag-repository.js";
-import  TweetRespository from "../repository/tweet-repository.js";
-
+import HashtagRepository from "../repository/hastag-repository.js";
+import TweetRespository from "../repository/tweet-repository.js";
 
 class TweetService {
-    constructor() {
-        this.tweetRepository = new TweetRespository();
-        this.hashtagRepository = new HashtagRepository();
-    }
+  constructor() {
+    this.tweetRepository = new TweetRespository();
+    this.hashtagRepository = new HashtagRepository();
+  }
 
-    async create(data) {
-      const content = data.content;
-      let tags = content.match(/#[a-zA-Z0-9_]+/g);
-  
-      // Log the extracted tags to see what was found
-      // Remove the '#' from each tag, if tags were found
-      
-       tags = tags ? tags.map((tag) => tag.substring(1)).map(tag => tag.toLowerCase()) : [];
+  async create(data) {
+    const content = data.content;
+    let tags = content.match(/#[a-zA-Z0-9_]+/g);
 
-  
-      // Log the processed tags
-      const tweet = await this.tweetRepository.create(data);
-      let alreadyPresentTag =await this.hashtagRepository.findByName(tags)
-  
-      let titleOfPresenttags = alreadyPresentTag.map(tags => tags.title)
+    tags = tags
+      ? tags.map((tag) => tag.substring(1)).map((tag) => tag.toLowerCase())
+      : [];
 
-    
-  
-      let newTags = tags.filter(tag => !titleOfPresenttags.includes(tag));
+    // Log the processed tags
+    const tweet = await this.tweetRepository.create(data);
+    let alreadyPresentTag = await this.hashtagRepository.findByName(tags);
 
-  
-      newTags = newTags.map((tag) => {
-        return { title: tag, tweet: [tweet.id] };
-      });
+    let titleOfPresenttags = alreadyPresentTag.map((tags) => tags.title);
 
-     await this.hashtagRepository.bulkCreate(newTags);
+    let newTags = tags.filter((tag) => !titleOfPresenttags.includes(tag));
 
-     alreadyPresentTag.forEach((tag) =>{
+    newTags = newTags.map((tag) => {
+      return { title: tag, tweet: [tweet.id] };
+    });
+
+    await this.hashtagRepository.bulkCreate(newTags);
+
+    alreadyPresentTag.forEach((tag) => {
       tag.tweet.push(tweet.id);
-      tag.save()
-     })
-      // create hashtag and add here
-      /**
-       * 1.bulcreate in mongoose
-       * 2. filter title of hashtag based on multiple tags
-       * 3.how to add tweet id inside all the hashtags
-       */
-      return tweet;
-    }
+      tag.save();
+    });
+    // create hashtag and add here
+    /**
+     * 1.bulcreate in mongoose
+     * 2. filter title of hashtag based on multiple tags
+     * 3.how to add tweet id inside all the hashtags
+     */
+    return tweet;
+  }
 }
 
-export {TweetService}
+export { TweetService };
 /*
     this is my #first #tweet . I am really #excited
 */
