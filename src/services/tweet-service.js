@@ -15,7 +15,8 @@ class TweetService {
       // Log the extracted tags to see what was found
       // Remove the '#' from each tag, if tags were found
       
-       tags = tags ? tags.map((tag) => tag.substring(1)) : [];
+       tags = tags ? tags.map((tag) => tag.substring(1)).map(tag => tag.toLowerCase()) : [];
+
   
       // Log the processed tags
       const tweet = await this.tweetRepository.create(data);

@@ -6,6 +6,8 @@ const tweetSchema = new Schema(
       type: String,
       required: true,
       max: [250, "tweet cannot be more then 250 character"],
+      lowercase:true,
+      trim:true,
     },
     hashtags: [
       {

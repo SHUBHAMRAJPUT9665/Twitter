@@ -10,7 +10,8 @@ connectDB()
       console.log(`Server is running at port: ${process.env.PORT || 5000}`);
 
       const service = new TweetService()
-      const tweet = await service.create({content:   "kaise #first #tweet #backendDevelopement"})
+      const tweet = await service.create({content:   "shubham rajput #developer #Don"})
+      console.log(tweet)
     });
     app.on("error", (error) => {
       console.log("Error", error);

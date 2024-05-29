@@ -5,6 +5,8 @@ const hashTagSchema = new Schema(
     title: {
       type: String,
       required: true,
+      lowercase:true,
+      unique:true
     },
     tweet: [
         {
@@ -15,6 +17,6 @@ const hashTagSchema = new Schema(
   },
   { timestamps: true }
 );
-const Hashtag = mongoose.model("Hashtag", hashTagSchema);
-export default Hashtag
+ const Hashtag = mongoose.model("Hashtag", hashTagSchema);
  
+ export default Hashtag
