@@ -50,4 +50,4 @@ class HashtagRepository {
     }
 }
 
-export {HashtagRepository}
+export default  HashtagRepository

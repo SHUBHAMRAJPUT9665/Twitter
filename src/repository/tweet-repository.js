@@ -48,4 +48,4 @@ class TweetRespository {
     }
 }
 
-export {TweetRespository}
+export default TweetRespository
