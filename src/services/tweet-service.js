@@ -43,7 +43,7 @@ class TweetService {
   }
 }
 
-export { TweetService };
+export default TweetService;
 /*
     this is my #first #tweet . I am really #excited
 */
