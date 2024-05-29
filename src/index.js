@@ -11,7 +11,6 @@ connectDB()
 
       const service = new TweetService()
       const tweet = await service.create({content:   "kaise #first #tweet #backendDevelopement"})
-      console.log(tweet)
     });
     app.on("error", (error) => {
       console.log("Error", error);
