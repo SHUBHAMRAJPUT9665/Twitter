@@ -56,4 +56,4 @@ class TweetRepository {
 
 
 
-module.export = TweetRepository
+export { TweetRepository }; // Ensure correct export syntax
