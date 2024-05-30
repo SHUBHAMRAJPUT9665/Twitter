@@ -6,7 +6,6 @@ class TweetService {
     this.tweetRepository = new TweetRespository();
     this.hashtagRepository = new HashtagRepository();
   }
-
   async create(data) {
     const content = data.content;
     let tags = content.match(/#[a-zA-Z0-9_]+/g);
