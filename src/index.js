@@ -12,24 +12,17 @@ connectDB()
       console.log(`Server is running at port: ${process.env.PORT || 5000}`);
     });
 
-    // user repo
 
 const userRepo = new UserRespository()
 const tweetRepo = new TweetRespository();
 
 const tweets =  await  tweetRepo.getAll(0,10);
+const users = await userRepo.getAll()
 
-
-const user = await userRepo.create({
-  name:"Shubham123456911",
-  email:"sshusham10a2e02e33d453e6es11901@gmail.com",
-  password:"shubham"
-})
-
-
+console.log(users[0].id)
 const likeService = new LikeService();
 
-await likeService.toggleLike(tweets[0].id , 'Tweet' , user.id)
+await likeService.toggleLike(tweets[0].id , 'Tweet' , users[1].id)
 
     app.on("error", (error) => {
       console.log("Error", error);

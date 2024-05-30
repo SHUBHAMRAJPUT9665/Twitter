@@ -1,3 +1,4 @@
+import Tweet from "../models/tweet.model.js";
 import LikeRepository from "../repository/like-repository.js";
 import TweetRespository from "../repository/tweet-repository.js";
 
@@ -8,14 +9,8 @@ class LikeService {
   }
 
   async toggleLike(modelId, modelType, userId) {
-
     if (modelType == "Tweet") {
-      var likeabel = await this.tweetRespository.get(modelId);
-      likeabel.populate({path:'likes'});
-
-
-
-
+      var likeabel = await Tweet.findById(modelId).populate({ path: "likes" });
     } else if (modelType == "Comment") {
       // todo
     } else {
@@ -27,12 +22,11 @@ class LikeService {
       onModel: modelType,
       likeabel: modelId,
     });
-
     if (exits) {
       likeabel.likes.pull(exits.id);
       await likeabel.save();
       await exits.remove();
-      var isAdded = true
+      var isAdded = true;
     } else {
       const newLike = await this.likeRepository.create({
         user: userId,
@@ -40,9 +34,9 @@ class LikeService {
         likeabel: modelId,
       });
 
-      console.log(newLike)
+      console.log(newLike);
       likeabel.likes.push(newLike);
-    
+
       await likeabel.save();
       isAdded = false;
     }
