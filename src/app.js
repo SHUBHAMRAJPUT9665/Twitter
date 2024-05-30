@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+
 const app = express();
 
 app.use(
@@ -19,5 +20,6 @@ app.use(cookieParser());
 // tweet route
 import tweetRouter from "./routes/tweet.route.js";
 app.use("/api/v1/tweet", tweetRouter);
+
 
 export { app };

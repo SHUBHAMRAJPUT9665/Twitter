@@ -30,7 +30,6 @@ class CrudRepository {
   async get(id) {
     try {
       const result = await this.model.findById(id);
-
       return result;
     } catch (error) {
       console.log("Something went wrong in crud repo");
