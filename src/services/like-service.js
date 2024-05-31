@@ -9,6 +9,9 @@ class LikeService {
   }
 
   async toggleLike(modelId, modelType, userId) {
+
+    console.log(modelId, modelType, userId);
+
     if (modelType == "Tweet") {
       var likeabel = await Tweet.findById(modelId).populate({ path: "likes" });
     } else if (modelType == "Comment") {
