@@ -5,8 +5,6 @@ class CommentService {
     constructor(){
         this.CommentRepo = new CommentRespository();
     }
-
-
     async createComment(modelId , modelType , userId){
 
     }
