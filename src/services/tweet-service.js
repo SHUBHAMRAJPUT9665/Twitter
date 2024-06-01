@@ -32,13 +32,14 @@ class TweetService {
       tag.tweet.push(tweet.id);
       tag.save();
     });
-    // create hashtag and add here
-    /**
-     * 1.bulcreate in mongoose
-     * 2. filter title of hashtag based on multiple tags
-     * 3.how to add tweet id inside all the hashtags
-     */
     return tweet;
+  }
+
+
+  async get(tweetId){
+    const tweet = await this.tweetRepository.getWithComments(tweetId)
+
+    return tweet
   }
 }
 
