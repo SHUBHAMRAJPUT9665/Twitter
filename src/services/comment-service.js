@@ -28,7 +28,6 @@ class CommentService {
 
         // commentable.comments.push(comment);
         await commentable.save();
-
         return comment;
     }
 }
