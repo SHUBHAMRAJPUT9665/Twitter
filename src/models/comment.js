@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const commentSchema = new mongoose.Schema(
+import mongoose,{Schema} from "mongoose";
+const commentSchema = new Schema(
   {
     content: {
       type: String,
