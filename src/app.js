@@ -17,6 +17,6 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(cookieParser());
 
-app.use("/api/v1/tweet", tweetRouter);
+app.use("/api/v1", tweetRouter);
 
 export { app };

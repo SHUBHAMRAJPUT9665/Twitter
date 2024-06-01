@@ -23,10 +23,8 @@ class CommentService {
       commentable: modelId,
       comments: [],
     });
-    console.log("COMMENT", comment);
-    console.log("commetable", commentable);
 
-    // commentable.comments.push(comment);
+    commentable.comments.push(comment);
     await commentable.save();
     return comment;
   }

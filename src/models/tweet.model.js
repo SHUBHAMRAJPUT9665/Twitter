@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-const tweetSchema = new mongoose.Schema({
+const tweetSchema = new Schema({
     content: {
         type: String,
         required: true,
@@ -11,10 +11,12 @@ const tweetSchema = new mongoose.Schema({
             ref: 'Like'
         }
     ] ,
-    comments:{
-        type:Schema.Types.ObjectId,
-        ref:'Comment'
-    }
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
 }, {timestamps: true});
 
 const Tweet = mongoose.model('Tweet', tweetSchema);
