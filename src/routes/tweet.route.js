@@ -8,10 +8,10 @@ const router = Router();
 // route for creating tweet
 router.route("/create-tweet").post(createTweet);
 
-// like
-
+// like toggle
 router.post('/likes/toggle',toggleLike);
 
+// comments route
 router.route('/comments').post(createComment)
 
 export default router;
