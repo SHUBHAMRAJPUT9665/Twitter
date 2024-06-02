@@ -29,6 +29,24 @@ userSchema.pre("save", function (next) {
   user.password = encryptedPassword;
   next();
 });
+
+userSchema.methods.comparePassword = function compare(passport) {
+  return bcrypt.compare(passport, this.passport);
+};
+
+userSchema.methods.genJWT = function generate() {
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      name: this.name,
+    },
+    "shubham_secret",
+    {
+      expiresIn: "1h",
+    }
+  );
+};
 const User = mongoose.model("User", userSchema);
 
 export default User;

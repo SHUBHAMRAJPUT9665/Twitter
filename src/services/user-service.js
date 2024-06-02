@@ -10,6 +10,16 @@ class UserService {
         const user = await this.userRespository.create(data);
         return user 
     }
+
+    async getUserByEmail(email){
+        try {
+            const user = await this.userRespository.findBy({email});
+            return user;
+        } catch (error) {
+            throw error;
+        }
+
+    }
 }
 
 
