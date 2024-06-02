@@ -13,7 +13,6 @@ export const passportAuth = (passport) => {
   passport.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
       const user = await User.findById(jwt_payload.id);
-
       if (!user) {
         done(null, false);
       } else {
@@ -22,3 +21,4 @@ export const passportAuth = (passport) => {
     })
   );
 };
+

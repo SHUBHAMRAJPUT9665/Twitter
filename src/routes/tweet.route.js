@@ -1,16 +1,20 @@
 import { Router } from "express";
 import { createTweet, getTweet } from "../controllers/tweet.controller.js";
 import { toggleLike } from "../controllers/like.controller.js";
-
 import { createComment } from "../controllers/comment-controller.js";
 import { login, signup } from "../controllers/auth-controller.js";
+
+// middleaware 
+import { authenticate } from "../middleware/authentication.js";
+
+
 const router = Router();
 
 // route for creating tweet
-router.route("/create-tweet").post(createTweet);
+router.route("/create-tweet").post(authenticate,createTweet);
 
 // like toggle
-router.post("/likes/toggle", toggleLike);
+router.route('/likes/toggle').post(authenticate,toggleLike)
 
 // comments route
 router.route("/comments").post(createComment);

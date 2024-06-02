@@ -44,5 +44,4 @@ const getTweet = async(req,res)=>{
   } 
 }
 
-
 export { createTweet , getTweet };

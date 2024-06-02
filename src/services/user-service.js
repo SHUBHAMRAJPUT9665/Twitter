@@ -20,6 +20,10 @@ class UserService {
         }
 
     }
+
+    async signin(data){
+        
+    }
 }
 
 

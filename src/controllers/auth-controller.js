@@ -26,35 +26,34 @@ const signup = async (req, res) => {
     });
   }
 };
-const login = async (req,res)=>{
-    try {
-        const user = await userService.getUserByEmail(req.body.email);
-        if(!user){
-            return res.status(401).json({
-                message:"no user found"
-
-            });
-        }
-
-        if(!user.comparePassword(req.body.password)){
-            return res.status(401).json({
-                message:"incorrect password",
-                success:false
-            })
-        }
-        const token = user.genJWT();
-
-        return res.status(200).json({
-            message:"successfully login",
-            data:token,
-            err:{}
-        })
-    } catch (error) {
-        return res.status(200).json({
-            message:"something went went wrong while login",
-            data:{},
-            err:error.message
-        })
+const login = async (req, res) => {
+  try {
+    const user = await userService.getUserByEmail(req.body.email);
+    if (!user) {
+      return res.status(401).json({
+        message: "no user found",
+      });
     }
-}
-export { signup , login };
+
+    if (!user.comparePassword(req.body.password)) {
+      return res.status(401).json({
+        message: "incorrect password",
+        success: false,
+      });
+    }
+    const token = user.genJWT();
+
+    return res.status(200).json({
+      message: "successfully login",
+      data: token,
+      err: {},
+    });
+  } catch (error) {
+    return res.status(200).json({
+      message: "something went went wrong while login",
+      data: {},
+      err: error.message,
+    });
+  }
+};
+export { signup, login };
