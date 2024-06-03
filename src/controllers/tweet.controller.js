@@ -7,22 +7,29 @@ const tweetService = new TweetService();
 const createTweet = async (req, res) => {
   try {
     let imageUrl = "";
-    const tweetimage = req.files.image[0].path;
-    const imageUploaded = await uploadOnCloudinary(tweetimage);
-    imageUrl = imageUploaded.secure_url;
-
-    if (imageUrl) {
+    if (!req.files.image) {
+      const response = await tweetService.create(req.body);
+      return res.status(201).json({
+        success: true,
+        message: "Successfully created a new tweet",
+        data: response,
+        err: {},
+      });
+    } else {
+      const tweetimage = req.files.image[0].path;
+      const imageUploaded = await uploadOnCloudinary(tweetimage);
+      imageUrl = imageUploaded.secure_url;
       req.body.image = imageUrl;
+      const response = await tweetService.create(req.body);
+      return res.status(201).json({
+        success: true,
+        message: "Successfully created a new tweet",
+        data: response,
+        err: {},
+      });
     }
-
-    const response = await tweetService.create(req.body);
-    return res.status(201).json({
-      success: true,
-      message: "Successfully created a new tweet",
-      data: response,
-      err: {},
-    });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "something went wrong while creating tweet",
