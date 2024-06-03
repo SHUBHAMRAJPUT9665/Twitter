@@ -11,7 +11,7 @@ import { authenticate } from "../middleware/authentication.js";
 const router = Router();
 
 // route for creating tweet
-router.route("/create-tweet").post(authenticate,createTweet);
+router.route("/create-tweet").post(authent,createTweet);
 
 // like toggle
 router.route('/likes/toggle').post(authenticate,toggleLike)

@@ -31,7 +31,7 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.methods.comparePassword = function compare(passport) {
-  return bcrypt.compare(passport, this.passport);
+  return bcrypt.compareSync(passport, this.passport);
 };
 
 userSchema.methods.genJWT = function generate() {

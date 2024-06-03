@@ -29,13 +29,13 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const user = await userService.getUserByEmail(req.body.email);
-    if (!user) {
+    if(!user){
       return res.status(401).json({
-        message: "no user found",
-      });
+        message:"no user found please signup"
+      })
     }
-
     if (!user.comparePassword(req.body.password)) {
+      console.log("compare password function")
       return res.status(401).json({
         message: "incorrect password",
         success: false,
@@ -49,6 +49,7 @@ const login = async (req, res) => {
       err: {},
     });
   } catch (error) {
+    console.log(error)
     return res.status(200).json({
       message: "something went went wrong while login",
       data: {},

@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import tweetRouter from "./routes/tweet.route.js";
 import passport from "passport";
-import { passportAuth } from "./config/jwit-middleware.js";
+import { passportAuth } from "./config/jwt-middleware.js";
 
 const app = express();
 
