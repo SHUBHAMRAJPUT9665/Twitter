@@ -25,13 +25,12 @@ userSchema.pre("save", function (next) {
   const SALT = bcrypt.genSaltSync(9);
 
   const encryptedPassword = bcrypt.hashSync(user.password, SALT);
-
   user.password = encryptedPassword;
   next();
 });
 
-userSchema.methods.comparePassword = function compare(passport) {
-  return bcrypt.compareSync(passport, this.passport);
+userSchema.methods.comparePassword = function compare(password) {
+  return bcrypt.compare(password, this.password);
 };
 
 userSchema.methods.genJWT = function generate() {

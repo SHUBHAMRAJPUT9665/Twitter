@@ -1,6 +1,6 @@
 import JWT from 'passport-jwt';
-import User from '../models/User.model.js';
 
+import User from '../models/User.model.js';
 const JwtStrategy = JWT.Strategy;
 const ExtractJwt = JWT.ExtractJwt;
 
@@ -11,7 +11,6 @@ const opts = {
 
 export const passportAuth = (passport) => {
     try {
-        console.log("inside strategy");;
         passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
             console.log("req sent to strategy");
             const user = await User.findById(jwt_payload.id);
