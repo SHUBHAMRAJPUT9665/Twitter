@@ -19,6 +19,8 @@
                 - Follower count
                 - Bio
                 - Last 10 tweet
+                - user image
 
   -pagination on tweets
   -user authentication
+                - password verification
