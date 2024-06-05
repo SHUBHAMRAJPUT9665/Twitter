@@ -4,7 +4,8 @@ const userService = new UserService();
 import  nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
+  service:"gmail",
+  host: "smtp.gmail.com",
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
@@ -21,21 +22,6 @@ const signup = async (req, res) => {
       name: req.body.name,
     });
 
-
-    var mailOptions = {
-      from: 'youremail@gmail.com',
-      to: response.email,
-      subject: 'Sending Email using Node.js',
-      text: 'That was easy!'
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-
     console.log(response);
 
     res.status(201).json({
@@ -43,6 +29,19 @@ const signup = async (req, res) => {
       message: "Successfully created a user",
       data: response,
       err: {},
+    });
+    var mailOptions = {
+      from: 'shubhamrajput9665@gmail.com',
+      to: response.email,
+      subject: 'signup successfully',
+      text: `welcome to twitt hub ${response.name}`
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
     });
   } catch (error) {
     return res.status(500).json({
