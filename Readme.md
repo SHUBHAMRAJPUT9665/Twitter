@@ -23,4 +23,4 @@
 
   -pagination on tweets
   -user authentication
-                - password verification
+                - password
