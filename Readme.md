@@ -20,7 +20,10 @@
                 - Bio
                 - Last 10 tweet
                 - user image
+                - proofile photo
 
   -pagination on tweets
   -user authentication
                 - password
+                
+                 
