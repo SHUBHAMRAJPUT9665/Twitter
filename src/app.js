@@ -23,10 +23,18 @@ passportAuth(passport);
 
 app.use("/api/v1", tweetRouter);
 app.get('/',(req,res) =>{
-
   res.status(200).json({
-    
-  })
+    "message": "Welcome! Here are the available routes:",
+    "routes": {
+      "Create Tweet": "https://twitter-mge0.onrender.com/api/v1/create-tweet",
+      "Toggle Like": "https://twitter-mge0.onrender.com/api/v1/likes/toggle",
+      "Create Comment": "https://twitter-mge0.onrender.com/api/v1/comments",
+      "Get Tweet with Comments": "https://twitter-mge0.onrender.com/api/v1/tweets/:id",
+      "Get All Tweets": "https://twitter-mge0.onrender.com/api/v1/all/tweet",
+      "Sign up": "https://twitter-mge0.onrender.com/api/v1/signup",
+      "Login": "https://twitter-mge0.onrender.com/api/v1/login"
+    }
+  });
 })
 
 export { app };
