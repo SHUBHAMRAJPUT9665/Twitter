@@ -3,7 +3,7 @@ import uploadOnCloudinary from "../config/cloudinary.js";
 
 const tweetService = new TweetService();
 
-// create tweet controller
+// Create tweet controller
 const createTweet = async (req, res) => {
   try {
     let imageUrl = "";
@@ -32,39 +32,6 @@ const createTweet = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: "something went wrong while creating tweet",
-      data: {},
-      err: error,
-    });
-  }
-};
-
-const createTfweet = async (req, res) => {
-  try {
-    // Check if an image is provided in the request
-    let imageUrl = "";
-    if (req.files?.image?.length > 0) {
-      const tweetimage = req.files.image[0].path;
-      const imageUploaded = await uploadOnCloudinary(tweetimage);
-      imageUrl = imageUploaded.secure_url; // Assuming secure_url is the URL of the uploaded image
-    }
-
-    // Add the image URL to req.body
-    if (imageUrl) {
-      req.body.image = imageUrl;
-    }
-
-    const response = await tweetService.create(req.body);
-
-    return res.status(201).json({
-      success: true,
-      message: "Successfully created a new tweet",
-      data: response,
-      err: {},
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
       message: "Something went wrong while creating tweet",
       data: {},
       err: error,
@@ -75,20 +42,41 @@ const createTfweet = async (req, res) => {
 const getTweet = async (req, res) => {
   try {
     const response = await tweetService.get(req.params.id);
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
-      message: "Successfully fetched a new tweet",
+      message: "Successfully fetched the tweet",
       data: response,
       err: {},
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "something went wrong while creating tweet",
+      message: "Something went wrong while fetching the tweet",
       data: {},
       err: error,
     });
   }
 };
 
-export { createTweet, getTweet };
+const allTweet = async (req, res) => {
+  try {
+    const offset = parseInt(req.query.offset) || 0;
+    const limit = parseInt(req.query.limit) || 10; // Default limit of 10 tweets
+    const response = await tweetService.getAll(offset, limit);
+    return res.status(200).json({
+      success: true,
+      message: "Successfully fetched all tweets",
+      data: response,
+      err: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong while fetching all tweets",
+      data: {},
+      err: error,
+    });
+  }
+};
+
+export { createTweet, getTweet, allTweet };

@@ -22,5 +22,11 @@ app.use(passport.initialize());
 passportAuth(passport);
 
 app.use("/api/v1", tweetRouter);
+app.get('/',(req,res) =>{
+
+  res.status(200).json({
+    
+  })
+})
 
 export { app };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTweet, getTweet } from "../controllers/tweet.controller.js";
+import { createTweet, getTweet,allTweet } from "../controllers/tweet.controller.js";
 import { toggleLike } from "../controllers/like.controller.js";
 import { createComment } from "../controllers/comment-controller.js";
 import { login, signup } from "../controllers/auth-controller.js";
@@ -29,6 +29,7 @@ router.route("/comments").post(createComment);
 
 // get tweet with comments
 router.route("/tweets/:id").get(getTweet);
+router.route('/all/tweet').get(allTweet);
 
 // user signup
 router.route("/signup").post(signup);

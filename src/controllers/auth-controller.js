@@ -34,7 +34,7 @@ const signup = async (req, res) => {
       from: 'shubhamrajput9665@gmail.com',
       to: response.email,
       subject: 'signup successfully',
-      text: `welcome to twitt hub ${response.name}`
+      text: `welcome to We Tweet ${response.name} your email ${response.email}`
     };
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
