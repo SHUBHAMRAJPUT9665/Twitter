@@ -23,7 +23,7 @@ passportAuth(passport);
 
 app.use("/api/v1", tweetRouter);
 app.get('/',(req,res) =>{
-  res.status(200).json({
+ return res.status(200).json({
     "message": "Welcome! Here are the available routes:",
     "routes": {
       "Create Tweet": "https://twitter-mge0.onrender.com/api/v1/create-tweet",
