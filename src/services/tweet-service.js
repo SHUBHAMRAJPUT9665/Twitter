@@ -9,6 +9,8 @@ class TweetService {
 
   async create(data) {
     const content = data.content;
+
+    // hastag regex
     let tags = content.match(/#[a-zA-Z0-9_]+/g);
 
     tags = tags
