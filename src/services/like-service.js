@@ -15,7 +15,7 @@ class LikeService {
     if (modelType == "Tweet") {
       var likeabel = await Tweet.findById(modelId).populate({ path: "likes" });
     } else if (modelType == "Comment") {
-      // todo
+      
     } else {
       throw new Error("unknown model type");
     }

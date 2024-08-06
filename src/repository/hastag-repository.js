@@ -48,6 +48,7 @@ class HashtagRepository {
             console.log(error);
         }
     }
+    //
 }
 
 export default  HashtagRepository
